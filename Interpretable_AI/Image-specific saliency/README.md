@@ -3,7 +3,7 @@
 ### 1. Image-specific Saliency 개요:
 
 컨볼루션 신경망의 Attribution을 보여주기 위한 대표적인 수단이 ‘Saliency Map(현저성 맵)’이다. 보통 Saliency Map은 이미지 상의 두드러진 부분을 지칭하나, 컨볼루션 신경망의 예측 결과에 대한 설명의 맥락에서는, 예측 결과를 이끌어낸 이미지 상의 주요한 부분을 표현하기 위한 목적으로 생성된다.
-컨볼루션 신경망의 예측 결과로부터 Saliency Map을 도출하기 위한 가장 간단한 방법은, 예측 클래스의 입력 이미지 X에 대한 gradient ∂yc/∂X를 계산하는 것이다. 마치 앞서 소개했던 Maximization by Optimization과 유사해 보일 것인데, Maximization by Optimization이 랜덤한 이미지에서 출발하여 feature map의 gradient를 반복적으로 더해주는 gradient ascent를 통해 가상의 이미지를 생성하였다면, Saliency Map의 경우 실제 입력 이미지에 대한 예측 클래스의 gradient를 한 번만 계산하여 이를 그대로 활용한다는 점이 차이라고 할 수 있다.
+컨볼루션 신경망의 예측 결과로부터 Saliency Map을 도출하기 위한 가장 간단한 방법은, 예측 클래스의 입력 이미지 X에 대한 gradient ∂yc/∂X를 계산하는 것이다. 마치 앞서 소개했던 Maximization by Optimization과 유사해 보일 것인데, Maximization by Optimization이 랜덤한 이미지에서 출발하여 feature map의 gradient를 반복적으로 더해주는 gradient ascent를 통해 가상의 이미지를 생성하였다면, Saliency Map의 경우 실제 입력 이미지에 대한 예측 클래스의 gradient를 한 번만 계산하여 이를 그대로 활용한다는 점이 차이라고 할 수 있다 [1].
 
 ![saliency-map-with-gradient-concept](https://user-images.githubusercontent.com/7313213/137118819-92f9a7f5-9612-4554-a30a-50e9ef8c9800.jpg)
 
@@ -11,7 +11,7 @@
 
 Gradient ascent를 이용하여 클래스 이미지를 생성했던 방법과 비슷한데, **random image가 아니라 특정 image를 입력해 해당 image를 classification하는 데에 큰 영향을 끼친 부분을 heatmap으로 표시**한다.
 
-과정은 다음과 같다.
+과정은 다음과 같다 [2].
 
 1. 타겟 입력 이미지를 CNN에 넣어 class score를 얻는다.
 2. Backpropagation으로 입력 이미지의 gradient를 구한다.
@@ -37,21 +37,21 @@ Given an image I_zero, a class c, and a classification ConvNet with the class sc
 
 ![taylor_series](https://user-images.githubusercontent.com/7313213/137119549-c157e277-222e-49ee-9b75-a04cf933112c.jpg)
 
-- 테일러 급수를 활용한 선형근사
+- 테일러 급수를 활용한 선형근사 [3]
 
 ![score_function_for_cnn](https://user-images.githubusercontent.com/7313213/137119551-d5b631a9-bd26-4083-a31c-1ef17846a8b2.JPG)
 
--위 도출된식에서의 특징은 w만 Image-specific saliency를 도출 하는데 사용된다.
+-위 도출된식에서의 특징은 w만 Image-specific saliency를 도출 하는데 사용된다 [4].
 
--소스코드에서 max(score)를 활용하여 class score를 구하는 이유는 softmax와 같은 계층에 들어가기 전의 계층(penultimate)에서 도출된 결과가 가장 높은 값이 결국 그 클래스의 예측을 나타나는 값이 되기 때문이다. (Class scores, by the way, are the values in the output layer that the neural network assigns to classes before the softmax, so they’re not probabilities, but they’re directly related to probabilities through a function like softmax.)
+-소스코드에서 max(score)를 활용하여 class score를 구하는 이유는 softmax와 같은 계층에 들어가기 전의 계층(penultimate)에서 도출된 결과가 가장 높은 값이 결국 그 클래스의 예측을 나타나는 값이 되기 때문이다. (Class scores, by the way, are the values in the output layer that the neural network assigns to classes before the softmax, so they’re not probabilities, but they’re directly related to probabilities through a function like softmax [5].)
 
 -매클로린급수를 사용하여서 식을 간단히 했다고 보았을 때 I_zero = 0 vertor image이다. 따라서, I_zero를 기준으로 Linear approximation을 수행한다면 향후 정규화된 이미지를 삽입하여 각 이미지의 class score를 구할 수 있음.
 
 ![paper_review](https://user-images.githubusercontent.com/7313213/137119134-374f57b2-b21d-4e1e-9b36-d750fdf40886.jpg)
 
 ### 4. References
-- [https://medium.datadriveninvestor.com/visualizing-neural-networks-using-saliency-maps-in-pytorch-289d8e244ab4](https://medium.datadriveninvestor.com/visualizing-neural-networks-using-saliency-maps-in-pytorch-289d8e244ab4)
-- [https://simonjisu.github.io/paper/2020/03/12/deepinsidecnn.html](https://simonjisu.github.io/paper/2020/03/12/deepinsidecnn.html)
-- [https://blogik.netlify.app/BoostCamp/U_stage/41_cnn_visualization/](https://blogik.netlify.app/BoostCamp/U_stage/41_cnn_visualization/)
-- [https://glassboxmedicine.com/2019/06/21/cnn-heat-maps-saliency-backpropagation/](https://glassboxmedicine.com/2019/06/21/cnn-heat-maps-saliency-backpropagation/)
-- [https://www.cognex.com/ko-kr/blogs/deep-learning/research/overview-interpretable-machine-learning-2-interpreting-deep-learning-models-image-recognition](https://www.cognex.com/ko-kr/blogs/deep-learning/research/overview-interpretable-machine-learning-2-interpreting-deep-learning-models-image-recognition)
+- [1] [https://www.cognex.com/ko-kr/blogs/deep-learning/research/overview-interpretable-machine-learning-2-interpreting-deep-learning-models-image-recognition](https://www.cognex.com/ko-kr/blogs/deep-learning/research/overview-interpretable-machine-learning-2-interpreting-deep-learning-models-image-recognition)
+- [2] [https://blogik.netlify.app/BoostCamp/U_stage/41_cnn_visualization/](https://blogik.netlify.app/BoostCamp/U_stage/41_cnn_visualization/)
+- [3] [https://simonjisu.github.io/paper/2020/03/12/deepinsidecnn.html](https://simonjisu.github.io/paper/2020/03/12/deepinsidecnn.html)
+- [4] [https://medium.datadriveninvestor.com/visualizing-neural-networks-using-saliency-maps-in-pytorch-289d8e244ab4](https://medium.datadriveninvestor.com/visualizing-neural-networks-using-saliency-maps-in-pytorch-289d8e244ab4)
+- [5] [https://glassboxmedicine.com/2019/06/21/cnn-heat-maps-saliency-backpropagation/](https://glassboxmedicine.com/2019/06/21/cnn-heat-maps-saliency-backpropagation/)
