@@ -13,13 +13,13 @@ model = torchvision.models.vgg19(pretrained=True)
 for param in model.parameters():
     param.requires_grad = False
 
-def download(url, fname):
-    response = requests.get(url)
-    with open(fname, "wb") as f:
-        f.write(response.content)
-
-# Downloading the image
-download("https://specials-images.forbesimg.com/imageserve/5db4c7b464b49a0007e9dfac/960x0.jpg?fit=scale", "Vanilla_backprop_2.jpg")
+# def download(url, fname):
+#     response = requests.get(url)
+#     with open(fname, "wb") as f:
+#         f.write(response.content)
+#
+# # Downloading the image
+# download("https://specials-images.forbesimg.com/imageserve/5db4c7b464b49a0007e9dfac/960x0.jpg?fit=scale", "Vanilla_backprop_2.jpg")
 
 # Opening the image
 img = Image.open('Image-specific Saliency.jpg')
