@@ -1,12 +1,11 @@
-### Source from
-### https://medium.datadriveninvestor.com/visualizing-neural-networks-using-saliency-maps-in-pytorch-289d8e244ab4
-
 import torch
 import torchvision
 import torchvision.transforms as T
 import matplotlib.pyplot as plt
 import requests
 from PIL import Image
+import warnings
+warnings.filterwarnings(action='ignore')
 
 #Using VGG# -19 pretrained model for image classification
 model = torchvision.models.vgg19(pretrained=True)
@@ -55,7 +54,7 @@ score_max_index = scores.argmax()
 score_max = scores[0, score_max_index]
 
 '''
-backward function on score_max performs the backward pass in the computation graph and calculates the gradient of 
+backward function on score_max performs the backward pass in the computation graph and calculates the gradient of
 score_max with respect to nodes in the computation graph
 '''
 score_max.backward()
@@ -66,7 +65,7 @@ R, G and B. To derive a single class saliency value for each pixel (i, j),  we t
 across all colour channels.
 '''
 saliency, _ = torch.max(X.grad.data.abs(), dim=1)
-print(saliency.shape)
+# print(saliency.shape)
 
 # code to plot the saliency map as a heatmap
 plt.imshow(saliency[0], cmap=plt.cm.hot)

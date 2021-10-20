@@ -3,7 +3,7 @@
 ### 1. Image-specific Saliency 개요:
 
 컨볼루션 신경망의 Attribution을 보여주기 위한 대표적인 수단이 ‘Saliency Map(현저성 맵)’이다. 보통 Saliency Map은 이미지 상의 두드러진 부분을 지칭하나, 컨볼루션 신경망의 예측 결과에 대한 설명의 맥락에서는, 예측 결과를 이끌어낸 이미지 상의 주요한 부분을 표현하기 위한 목적으로 생성된다.
-컨볼루션 신경망의 예측 결과로부터 Saliency Map을 도출하기 위한 가장 간단한 방법은, 예측 클래스의 입력 이미지 X에 대한 gradient ∂yc/∂X를 계산하는 것이다. 마치 앞서 소개했던 Maximization by Optimization과 유사해 보일 것인데, Maximization by Optimization이 랜덤한 이미지에서 출발하여 feature map의 gradient를 반복적으로 더해주는 gradient ascent를 통해 가상의 이미지를 생성하였다면, Saliency Map의 경우 실제 입력 이미지에 대한 예측 클래스의 gradient를 한 번만 계산하여 이를 그대로 활용한다는 점이 차이라고 할 수 있다 [1].
+컨볼루션 신경망의 예측 결과로부터 Saliency Map을 도출하기 위한 가장 간단한 방법은 예측 클래스의 입력 이미지 X에 대한 gradient ∂yc/∂X를 계산하는 것이다 [1].
 
 ![saliency-map-with-gradient-concept](https://user-images.githubusercontent.com/7313213/137118819-92f9a7f5-9612-4554-a30a-50e9ef8c9800.jpg)
 
