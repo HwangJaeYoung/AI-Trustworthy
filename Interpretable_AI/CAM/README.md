@@ -49,7 +49,7 @@ CNN 모델에서 Layer를 깊게 쌓으면서, model 의 parameter 수가 너무
 #### 4.3. CAM 생성방식 (2)
 ![summary](https://user-images.githubusercontent.com/7313213/138785534-19964d7b-f3c2-46d5-87ef-3187679eb388.jpeg)
 
-각 feature map <img src="https://render.githubusercontent.com/render/math?math=f_{k}(i, j)">에 각 class에 대한 가중치 w^ck를 곱해주면 heatmap을 featuremap 개수 k 만큼 얻을수 있다. 이 heatmap 이미지를 모두 pixel-wise sum을 해주면, 하나의 heatmap을 얻을 수 있는데, 이게 바로 CAM 이다.
+각 feature map <img src="https://render.githubusercontent.com/render/math?math=f_{k}(i, j)">에 각 class에 대한 가중치 <img src="https://render.githubusercontent.com/render/math?math=w^{c}_k">를 곱해주면 heatmap을 featuremap 개수 k 만큼 얻을수 있다. 이 heatmap 이미지를 모두 pixel-wise sum을 해주면, 하나의 heatmap을 얻을 수 있는데, 이게 바로 CAM 이다.
 
 <br/>
 
@@ -81,4 +81,4 @@ CNN 모델에서 Layer를 깊게 쌓으면서, model 의 parameter 수가 너무
 - [2] [https://m.blog.naver.com/qbxlvnf11/221932118708](https://m.blog.naver.com/qbxlvnf11/221932118708)
 
 #### CAM-Pytorch source code
-- [1] [https://medium.com/@stepanulyanin/implementing-grad-cam-in-pytorch-ea0937c31e8](https://medium.com/@stepanulyanin/implementing-grad-cam-in-pytorch-ea0937c31e8)
+- [1] [https://medium.com/@stepanulyanin/implementing-grad-cam-in-pytorch-ea0937c31e82](https://medium.com/@stepanulyanin/implementing-grad-cam-in-pytorch-ea0937c31e82)
