@@ -68,7 +68,7 @@ transform = transforms.Compose([transforms.Resize((224, 224)),
                                 transforms.ToTensor(),
                                 transforms.Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225])])
 
-img = Image.open('data/shark.jpeg')
+img = Image.open('data/Elephant.jpeg')
 img = transform(img).unsqueeze(0)
 
 # get the most likely prediction of the model
@@ -117,7 +117,7 @@ heatmap /= torch.max(heatmap)
 # draw the heatmap
 plt.matshow(heatmap.squeeze())
 
-img = cv2.imread('data/shark.jpeg')
+img = cv2.imread('data/Elephant.jpeg')
 height, width, _ = img.shape
 heatmap = np.uint8(255 * heatmap)
 heatmap = cv2.applyColorMap(cv2.resize(heatmap, (width, height)), cv2.COLORMAP_JET)
