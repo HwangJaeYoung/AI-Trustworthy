@@ -7,11 +7,15 @@
 
 ![cam_intro](https://user-images.githubusercontent.com/7313213/138784770-95e9c32f-00d6-4419-87d8-10e47f455f02.png)
 
+<br/>
+
 ### 2. Class Activation Map 구조:
 
 ![structure](https://user-images.githubusercontent.com/7313213/138784867-92c2890e-48fd-4ced-a472-0e893c23b48a.jpg)
 
 예측된 (Predicted) 클래스의 점수는 이전 컨볼루션 레이어와(last-convolutional layer) 다시 매핑되어 연관된 Class Activation Map을 생성해 내며, 일반적으로 Flatten을 수행하여 Fully-Connected에 연결을 수행하는 CNN과는 달리 CAM에서는 Global Average Pooling (GAP) 기법을 사용하였다.
+
+<br/>
 
 ### 3. Class Activation Map 관련 알고리즘
 
@@ -31,6 +35,7 @@ CAM의 경우 WSOD의 결과로 Heatmap을 얻게되고, Heatmap 근처에 Bound
 ![gap](https://user-images.githubusercontent.com/7313213/138785303-3ba2bc84-26fe-433d-b0f8-6d086a8edb25.jpg)
 CNN 모델에서 Layer를 깊게 쌓으면서, model 의 parameter 수가 너무 많아지는 경향이 있어, 도대체 어디서 이 수많은 parameter 를 필요로 하는지 알아보니, FC layer (Fully-connected layer) 에서 상당량의 parameter 를 요구하고 있었다. 또한, FC layer 특성상 저 많은 parameter 를 학습할 때 필연적으로 overfitting 이 발생하며, Convolutional layer에서 FC로 연결할 때 Flatten을 수행하는데 이 때 공간에 대한 정보가 사라진다. 따라서 위와 같은 문제들을 해결하기 CAM에서는 GAP을 사용하여 Heatmap을 사용하는 알고리즘을 제시하였다.
 
+<br/>
 
 ### 4. Class Activation Map 알고리즘 동작방식
 
@@ -46,6 +51,8 @@ CNN 모델에서 Layer를 깊게 쌓으면서, model 의 parameter 수가 너무
 
 각 feature map <img src="https://render.githubusercontent.com/render/math?math=f_{k}(i, j)">에 각 class에 대한 가중치 w^ck를 곱해주면 heatmap을 featuremap 개수 k 만큼 얻을수 있다. 이 heatmap 이미지를 모두 pixel-wise sum을 해주면, 하나의 heatmap을 얻을 수 있는데, 이게 바로 CAM 이다.
 
+<br/>
+
 ### 5. Class Activation Map (CAM) Summary
 
 ![summary](https://user-images.githubusercontent.com/7313213/138790116-98a9c538-12d8-4daa-a3b6-e16802b01791.jpeg)
@@ -54,7 +61,7 @@ CNN 모델에서 Layer를 깊게 쌓으면서, model 의 parameter 수가 너무
 1. 이미지의 위치 정보를 그대로 사용하여 분류한다.
 2. 이미지가 분류될 때, 어떤 부분이 이미지 분류에 영향을 미친건지 시각적으로 확인할 수 있다.
 
-
+<br/>
 
 ### 6. References
 
