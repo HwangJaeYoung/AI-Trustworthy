@@ -46,7 +46,17 @@ CNN 모델에서 Layer를 깊게 쌓으면서, model 의 parameter 수가 너무
 
 각 feature map <img src="https://render.githubusercontent.com/render/math?math=f_{k}(i, j)">에 각 class에 대한 가중치 w^ck를 곱해주면 heatmap을 featuremap 개수 k 만큼 얻을수 있다. 이 heatmap 이미지를 모두 pixel-wise sum을 해주면, 하나의 heatmap을 얻을 수 있는데, 이게 바로 CAM 이다.
 
-### 5. References
+### 5. Class Activation Map (CAM) Summary
+
+![summary](https://user-images.githubusercontent.com/7313213/138790116-98a9c538-12d8-4daa-a3b6-e16802b01791.jpeg)
+
+< 데이터셋 별 CAM 결과 이미지 >
+1. 이미지의 위치 정보를 그대로 사용하여 분류한다.
+2. 이미지가 분류될 때, 어떤 부분이 이미지 분류에 영향을 미친건지 시각적으로 확인할 수 있다.
+
+
+
+### 6. References
 
 #### Class Activation Map (CAM)
 - [1] [https://tyami.github.io/deep learning/CNN-visualization-Grad-CAM/](https://tyami.github.io/deep%20learning/CNN-visualization-Grad-CAM/)
