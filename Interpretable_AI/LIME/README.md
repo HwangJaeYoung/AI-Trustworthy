@@ -79,3 +79,4 @@
 - [4] [https://sualab.github.io/introduction/2019/08/30/interpretable-machine-learning-overview-1.html](https://sualab.github.io/introduction/2019/08/30/interpretable-machine-learning-overview-1.html)
 - [5] [http://dmqm.korea.ac.kr/activity/seminar/297](http://dmqm.korea.ac.kr/activity/seminar/297)
 - [6] [https://towardsdatascience.com/interpretable-machine-learning-for-image-classification-with-lime-ea947e82ca13](https://towardsdatascience.com/interpretable-machine-learning-for-image-classification-with-lime-ea947e82ca13)
+- [7] Interpretable AI, Ajay Thampi, Manning Publications
